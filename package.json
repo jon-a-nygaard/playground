@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/jon-a-nygaard/playground/issues"
   },
-  "homepage": "https://github.com/jon-a-nygaard/playground#readme"
+  "homepage": "https://github.com/jon-a-nygaard/playground#readme",
+  "devDependencies": {
+    "babelify": "^7.3.0"
+  }
 }
