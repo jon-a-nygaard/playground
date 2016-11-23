@@ -1,19 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-	<title>Logical tests</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <title>Logical tests</title>
 </head>
 <body>
-<table id="result" class="table table-bordered">
-  <tr>
-    <th>isNull</th>
-    <th>stacking</th>
-    <th>connectNulls</th>
-    <th>!(isNull &amp;&amp; !stacking &amp;&amp; connectNulls)</th>
-    <th>!isNull &amp;&amp; stacking &amp;&amp; !connectNulls</th>
-  </tr>
-</table>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Conditions</h1>
+            <form>
+                <div class="form-group">
+                    <label for="condition1">Condition 1: </label>
+                    <input type="text" id="condition1" name="condition1" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="condition1">Condition 2: </label>
+                    <input type="text" id="condition2" name="condition2" class="form-control">
+                </div>
+                <input id="submit" type="button" value="Submit" class="btn btn-default"></input>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Result</h1>
+            <table id="result" class="table table-bordered">
+              <tr>
+                <th>isNull</th>
+                <th>stacking</th>
+                <th>connectNulls</th>
+                <th>!(isNull &amp;&amp; !stacking &amp;&amp; connectNulls)</th>
+                <th>!isNull &amp;&amp; stacking &amp;&amp; !connectNulls</th>
+              </tr>
+            </table>
+        </div>
+    </div>
+</div>
 <script src="./app.js" type="text/javascript"></script>
 </body>
 </html>
