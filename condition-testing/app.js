@@ -47,8 +47,29 @@ const addCell = (row, value) => {
  * @return {undefined} No return
  */
 const addRow = (table, values) => {
-    const row = table.insertRow()
-    values.forEach(v => addCell(row, v))
+  const row = table.insertRow()
+  values.forEach(v => addCell(row, v))
+}
+const getCondition = (text) => {
+  const li = document.createElement('li')
+  const button = document.createElement('a')
+  const icon = document.createElement('span')
+  const t = document.createTextNode(text)
+  icon.className = 'glyphicon glyphicon-remove'
+  button.appendChild(icon)
+  button.className = 'remove-condition'
+  li.appendChild(button)
+  li.appendChild(t)
+  li.className = 'list-group-item'
+  return li
+}
+const addNewCondition = () => {
+  const list = document.getElementById('conditions')
+  const input = document.getElementById('new-condition')
+  const condition = getCondition(input.value)
+  console.log(condition)
+  list.appendChild(condition)
+  input.value = ''
 }
 const test1 = (isNull, stacking, connectNulls) => !(isNull && !stacking && connectNulls)
 const test2 = (isNull, stacking, connectNulls) => !isNull && stacking && !connectNulls
@@ -58,8 +79,10 @@ const runCombinations = () => {
   deleteRows(table, 1)
   combos.forEach(combo => {
     const values = [combo[0], combo[1], combo[2], test1.apply(this, combo), test2.apply(this, combo)]
-    addRow(table, values);
+    addRow(table, values)
   })
 }
-const button = document.getElementById('submit')
-button.onclick = runCombinations
+const submitButton = document.getElementById('submit')
+const addConditionButton = document.getElementById('add-condition')
+submitButton.onclick = runCombinations
+addConditionButton.onclick = addNewCondition

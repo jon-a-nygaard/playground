@@ -62,6 +62,27 @@ var addRow = function addRow(table, values) {
     return addCell(row, v);
   });
 };
+var getCondition = function getCondition(text) {
+  var li = document.createElement('li');
+  var button = document.createElement('a');
+  var icon = document.createElement('span');
+  var t = document.createTextNode(text);
+  icon.className = 'glyphicon glyphicon-remove';
+  button.appendChild(icon);
+  button.className = 'remove-condition';
+  li.appendChild(button);
+  li.appendChild(t);
+  li.className = 'list-group-item';
+  return li;
+};
+var addNewCondition = function addNewCondition() {
+  var list = document.getElementById('conditions');
+  var input = document.getElementById('new-condition');
+  var condition = getCondition(input.value);
+  console.log(condition);
+  list.appendChild(condition);
+  input.value = '';
+};
 var test1 = function test1(isNull, stacking, connectNulls) {
   return !(isNull && !stacking && connectNulls);
 };
@@ -77,7 +98,9 @@ var runCombinations = function runCombinations() {
     addRow(table, values);
   });
 };
-var button = document.getElementById('submit');
-button.onclick = runCombinations;
+var submitButton = document.getElementById('submit');
+var addConditionButton = document.getElementById('add-condition');
+submitButton.onclick = runCombinations;
+addConditionButton.onclick = addNewCondition;
 
 },{}]},{},[1]);

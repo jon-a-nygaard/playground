@@ -8,16 +8,26 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <h1>Conditions</h1>
+            <h1>
+                Conditions 
+                <small>
+                    
+                </small>
+            </h1>
             <form>
                 <div class="form-group">
-                    <label for="condition1">Condition 1: </label>
-                    <input type="text" id="condition1" name="condition1" class="form-control">
+                    <label for="new-condition">Add Condition</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <a id="add-condition" role="button">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </a>
+                        </span>
+                        <input type="text" id="new-condition" name="new-condition" class="form-control">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="condition1">Condition 2: </label>
-                    <input type="text" id="condition2" name="condition2" class="form-control">
-                </div>
+                <ul id="conditions" class="list-group">
+                </ul>
                 <input id="submit" type="button" value="Submit" class="btn btn-default"></input>
             </form>
         </div>
