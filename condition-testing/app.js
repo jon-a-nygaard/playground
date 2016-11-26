@@ -40,6 +40,16 @@ const addCell = (row, value) => {
   cell.appendChild(content)
   cell.className = (value ? 'bg-success' : 'bg-danger')
 }
+/**
+ * Add a row to the table
+ * @param  {HTMLTableElement} table The table to delete from
+ * @param  {Array} values Array of cell values to add in the row
+ * @return {undefined} No return
+ */
+const addRow = (table, values) => {
+    const row = table.insertRow()
+    values.forEach(v => addCell(row, v))
+}
 const test1 = (isNull, stacking, connectNulls) => !(isNull && !stacking && connectNulls)
 const test2 = (isNull, stacking, connectNulls) => !isNull && stacking && !connectNulls
 const runCombinations = () => {
@@ -47,9 +57,8 @@ const runCombinations = () => {
   const combos = combinations(3)
   deleteRows(table, 1)
   combos.forEach(combo => {
-    const row = table.insertRow()
     const values = [combo[0], combo[1], combo[2], test1.apply(this, combo), test2.apply(this, combo)]
-    values.forEach(v => addCell(row, v))
+    addRow(table, values);
   })
 }
 const button = document.getElementById('submit')

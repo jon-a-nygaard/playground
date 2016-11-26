@@ -50,6 +50,18 @@ var addCell = function addCell(row, value) {
   cell.appendChild(content);
   cell.className = value ? 'bg-success' : 'bg-danger';
 };
+/**
+ * Add a row to the table
+ * @param  {HTMLTableElement} table The table to delete from
+ * @param  {Array} values Array of cell values to add in the row
+ * @return {undefined} No return
+ */
+var addRow = function addRow(table, values) {
+  var row = table.insertRow();
+  values.forEach(function (v) {
+    return addCell(row, v);
+  });
+};
 var test1 = function test1(isNull, stacking, connectNulls) {
   return !(isNull && !stacking && connectNulls);
 };
@@ -61,11 +73,8 @@ var runCombinations = function runCombinations() {
   var combos = combinations(3);
   deleteRows(table, 1);
   combos.forEach(function (combo) {
-    var row = table.insertRow();
     var values = [combo[0], combo[1], combo[2], test1.apply(undefined, combo), test2.apply(undefined, combo)];
-    values.forEach(function (v) {
-      return addCell(row, v);
-    });
+    addRow(table, values);
   });
 };
 var button = document.getElementById('submit');
