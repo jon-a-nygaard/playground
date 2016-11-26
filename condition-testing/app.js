@@ -1,6 +1,6 @@
 'use strict'
-const button = document.getElementById('submit')
-const table = document.getElementById('result')
+const isNumber = n => typeof n === 'number' && !isNaN(n)
+const range = (s, e) => Array.from({ length: e - s + 1 }).map((_, n) => s + n)
 const combinations = (n) => {
   let r = []
   for (let i = 0; i < (1 << n); i++) {
@@ -12,11 +12,27 @@ const combinations = (n) => {
   }
   return r
 }
+/**
+ * Delete a range of rows from a table
+ * @param  {HTMLTableElement} table The table to delete from
+ * @param  {Number} start Index of first element to delete
+ * @param  {Number} end   Index of last element to delete
+ * @return {undefined} No return
+ */
+const deleteRows = (table, start, end) => {
+  const s = isNumber(start) ? start : 0
+  const e = isNumber(end) ? end : table.rows.length - 1
+  if (s <= e) {
+    const r = range(s, e)
+    r.forEach(i => table.deleteRow(s))
+  }
+}
 const test1 = (isNull, stacking, connectNulls) => !(isNull && !stacking && connectNulls)
 const test2 = (isNull, stacking, connectNulls) => !isNull && stacking && !connectNulls
 const runCombinations = () => {
+  const table = document.getElementById('result')
   const combos = combinations(3)
-  console.log(combos)
+  deleteRows(table, 1)
   combos.forEach(combo => {
     const row = table.insertRow()
     const values = [combo[0], combo[1], combo[2], test1.apply(this, combo), test2.apply(this, combo)]
@@ -28,4 +44,5 @@ const runCombinations = () => {
     })
   })
 }
+const button = document.getElementById('submit')
 button.onclick = runCombinations
