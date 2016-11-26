@@ -62,6 +62,12 @@ var addRow = function addRow(table, values) {
     return addCell(row, v);
   });
 };
+var removeCondition = function removeCondition(event) {
+  var button = event.target;
+  var li = button.parentElement.parentElement;
+  var ul = li.parentElement;
+  ul.removeChild(li);
+};
 var getCondition = function getCondition(text) {
   var li = document.createElement('li');
   var button = document.createElement('a');
@@ -70,6 +76,7 @@ var getCondition = function getCondition(text) {
   icon.className = 'glyphicon glyphicon-remove';
   button.appendChild(icon);
   button.className = 'remove-condition';
+  button.onclick = removeCondition;
   li.appendChild(button);
   li.appendChild(t);
   li.className = 'list-group-item';
@@ -79,7 +86,6 @@ var addNewCondition = function addNewCondition() {
   var list = document.getElementById('conditions');
   var input = document.getElementById('new-condition');
   var condition = getCondition(input.value);
-  console.log(condition);
   list.appendChild(condition);
   input.value = '';
 };
