@@ -8,13 +8,21 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <h1>
-                Conditions 
-                <small>
-                    
-                </small>
-            </h1>
             <form>
+                <h1>Variables</h1>
+                <div class="form-group">
+                    <label for="new-variable">Add Variable</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <a id="add-variable" role="button">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </a>
+                        </span>
+                        <input type="text" id="new-variable" name="new-variable" class="form-control">
+                    </div>
+                </div>
+                <ul id="variables" class="list-group"></ul>
+                <h1>Conditions</h1>
                 <div class="form-group">
                     <label for="new-condition">Add Condition</label>
                     <div class="input-group">
@@ -26,8 +34,7 @@
                         <input type="text" id="new-condition" name="new-condition" class="form-control">
                     </div>
                 </div>
-                <ul id="conditions" class="list-group">
-                </ul>
+                <ul id="conditions" class="list-group"></ul>
                 <input id="submit" type="button" value="Submit" class="btn btn-default"></input>
             </form>
         </div>

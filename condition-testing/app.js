@@ -50,13 +50,23 @@ const addRow = (table, values) => {
   const row = table.insertRow()
   values.forEach(v => addCell(row, v))
 }
-const removeCondition = (event) => {
-  const button = event.target;
+/**
+ * Remove a list item on click
+ * @param  {Object} event Event object
+ * @return {undefined} No return
+ */
+const removeListItem = (event) => {
+  const button = event.target
   const li = button.parentElement.parentElement
   const ul = li.parentElement
   ul.removeChild(li)
 }
-const getCondition = (text) => {
+/**
+ * Create a list element
+ * @param  {String} text Text content for the item
+ * @return {Element} List element
+ */
+const getListItem = (text) => {
   const li = document.createElement('li')
   const button = document.createElement('a')
   const icon = document.createElement('span')
@@ -64,19 +74,39 @@ const getCondition = (text) => {
   icon.className = 'glyphicon glyphicon-remove'
   button.appendChild(icon)
   button.className = 'remove-condition'
-  button.onclick = removeCondition
+  button.onclick = removeListItem
   li.appendChild(button)
   li.appendChild(t)
   li.className = 'list-group-item'
   return li
 }
-const addNewCondition = () => {
-  const list = document.getElementById('conditions')
-  const input = document.getElementById('new-condition')
-  const condition = getCondition(input.value)
-  list.appendChild(condition)
+/**
+ * Add input value as a list item
+ * @param  {Element} list List element to add the new item
+ * @param  {Element} input The input to get the value from
+ * @return {undefined} No return
+ */
+const addInputToList = (list, input) => {
+  const item = getListItem(input.value)
+  list.appendChild(item)
   input.value = ''
 }
+/**
+ * Add new condition to list
+ * @return {undefined} No return
+ */
+const addNewCondition = () => addInputToList(
+  document.getElementById('conditions'),
+  document.getElementById('new-condition')
+)
+/**
+ * Add new variable to list
+ * @return {undefined} No return
+ */
+const addNewVariable = () => addInputToList(
+  document.getElementById('variables'),
+  document.getElementById('new-variable')
+)
 const test1 = (isNull, stacking, connectNulls) => !(isNull && !stacking && connectNulls)
 const test2 = (isNull, stacking, connectNulls) => !isNull && stacking && !connectNulls
 const runCombinations = () => {
@@ -88,7 +118,6 @@ const runCombinations = () => {
     addRow(table, values)
   })
 }
-const submitButton = document.getElementById('submit')
-const addConditionButton = document.getElementById('add-condition')
-submitButton.onclick = runCombinations
-addConditionButton.onclick = addNewCondition
+document.getElementById('submit').onclick = runCombinations
+document.getElementById('add-variable').onclick = addNewVariable
+document.getElementById('add-condition').onclick = addNewCondition

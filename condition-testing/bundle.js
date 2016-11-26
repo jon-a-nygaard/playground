@@ -62,13 +62,23 @@ var addRow = function addRow(table, values) {
     return addCell(row, v);
   });
 };
-var removeCondition = function removeCondition(event) {
+/**
+ * Remove a list item on click
+ * @param  {Object} event Event object
+ * @return {undefined} No return
+ */
+var removeListItem = function removeListItem(event) {
   var button = event.target;
   var li = button.parentElement.parentElement;
   var ul = li.parentElement;
   ul.removeChild(li);
 };
-var getCondition = function getCondition(text) {
+/**
+ * Create a list element
+ * @param  {String} text Text content for the item
+ * @return {Element} List element
+ */
+var getListItem = function getListItem(text) {
   var li = document.createElement('li');
   var button = document.createElement('a');
   var icon = document.createElement('span');
@@ -76,18 +86,36 @@ var getCondition = function getCondition(text) {
   icon.className = 'glyphicon glyphicon-remove';
   button.appendChild(icon);
   button.className = 'remove-condition';
-  button.onclick = removeCondition;
+  button.onclick = removeListItem;
   li.appendChild(button);
   li.appendChild(t);
   li.className = 'list-group-item';
   return li;
 };
-var addNewCondition = function addNewCondition() {
-  var list = document.getElementById('conditions');
-  var input = document.getElementById('new-condition');
-  var condition = getCondition(input.value);
-  list.appendChild(condition);
+/**
+ * Add input value as a list item
+ * @param  {Element} list List element to add the new item
+ * @param  {Element} input The input to get the value from
+ * @return {undefined} No return
+ */
+var addInputToList = function addInputToList(list, input) {
+  var item = getListItem(input.value);
+  list.appendChild(item);
   input.value = '';
+};
+/**
+ * Add new condition to list
+ * @return {undefined} No return
+ */
+var addNewCondition = function addNewCondition() {
+  return addInputToList(document.getElementById('conditions'), document.getElementById('new-condition'));
+};
+/**
+ * Add new variable to list
+ * @return {undefined} No return
+ */
+var addNewVariable = function addNewVariable() {
+  return addInputToList(document.getElementById('variables'), document.getElementById('new-variable'));
 };
 var test1 = function test1(isNull, stacking, connectNulls) {
   return !(isNull && !stacking && connectNulls);
@@ -104,9 +132,8 @@ var runCombinations = function runCombinations() {
     addRow(table, values);
   });
 };
-var submitButton = document.getElementById('submit');
-var addConditionButton = document.getElementById('add-condition');
-submitButton.onclick = runCombinations;
-addConditionButton.onclick = addNewCondition;
+document.getElementById('submit').onclick = runCombinations;
+document.getElementById('add-variable').onclick = addNewVariable;
+document.getElementById('add-condition').onclick = addNewCondition;
 
 },{}]},{},[1]);
