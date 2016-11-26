@@ -37,6 +37,19 @@ var deleteRows = function deleteRows(table, start, end) {
     });
   }
 };
+/**
+ * Add a cell to row with a value.
+ * Sets classname to 'bg-success' if value is truthy, otherwise 'bg-danger'
+ * @param  {HTMLTableRowElement} row The row to insert cell
+ * @param  {Boolean} value The value to insert
+ * @return {undefined} No return
+ */
+var addCell = function addCell(row, value) {
+  var cell = row.insertCell();
+  var content = document.createTextNode('' + value);
+  cell.appendChild(content);
+  cell.className = value ? 'bg-success' : 'bg-danger';
+};
 var test1 = function test1(isNull, stacking, connectNulls) {
   return !(isNull && !stacking && connectNulls);
 };
@@ -51,10 +64,7 @@ var runCombinations = function runCombinations() {
     var row = table.insertRow();
     var values = [combo[0], combo[1], combo[2], test1.apply(undefined, combo), test2.apply(undefined, combo)];
     values.forEach(function (v) {
-      var cell = row.insertCell();
-      var content = document.createTextNode('' + v);
-      cell.appendChild(content);
-      cell.className = v ? 'bg-success' : 'bg-danger';
+      return addCell(row, v);
     });
   });
 };
